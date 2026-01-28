@@ -79,6 +79,24 @@ public class BoardController {
 		return "board/detail";
 	}
 	
+	@GetMapping("/delete")
+	public String boardDelete(Board board, Model model) {
+		log.info("boardDetail board = "+board.toString());
+		
+		try {
+			int count = boardService.deleteBoard(board);
+			if(count > 0) {
+				model.addAttribute("message", "%d 님의 정보가 삭제되었습니다.".formatted(board.getNo()));
+				return "board/success";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("message", "%d 님의 정보 삭제가 실패하였습니다.".formatted(board.getNo()));
+		return "board/failed";
+	}
+	
+	
 	
 }
 
