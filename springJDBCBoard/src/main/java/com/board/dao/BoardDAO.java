@@ -75,5 +75,36 @@ public class BoardDAO {
 		
 		return count;
 	}
+
+	public int updateBoard(Board board) {
+		String query = "update jdbcboard set writer = ?, title = ?, content = ? where no = ?";
+		
+		int count = jdbcTemplate.update(query, board.getWriter(), board.getTitle(), board.getContent(), board.getNo());
+		
+		return count;
+	}
+
+	public List<Board> boardSerch(Board board) {
+		String callName = board.getSearchType();
+		
+		String query = "SELECT * FROM JDBCBOARD WHERE " +callName+" LIKE ? ORDER BY NO DESC, REG_DATE DESC";
+		
+		List<Board> boardList = jdbcTemplate.query(query, new RowMapper<Board>() {
+			@Override
+			public Board mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Board board = new Board();
+				
+				board.setNo(rs.getInt("NO"));
+				board.setTitle(rs.getString("TITLE"));
+				board.setContent(rs.getString("CONTENT"));
+				board.setWriter(rs.getString("WRITER"));
+				board.setRegDate(rs.getDate("REG_DATE"));
+				
+				return board;
+			}
+		}, "%"+board.getKeyword()+"%");
+		
+		return boardList;
+	}
 	
 }

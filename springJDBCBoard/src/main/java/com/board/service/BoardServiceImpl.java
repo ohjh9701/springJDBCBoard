@@ -29,8 +29,8 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public int updateBoard(Board board) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		int count = boardDAO.updateBoard(board);
+		return count;
 	}
 
 	@Override
@@ -42,6 +42,13 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<Board> boardList() throws Exception {
 		List<Board> boardList = boardDAO.boardList();
+		
+		return boardList;
+	}
+
+	@Override
+	public List<Board> boardSerch(Board board) throws Exception {
+		List<Board> boardList = boardDAO.boardSerch(board);
 		
 		return boardList;
 	}

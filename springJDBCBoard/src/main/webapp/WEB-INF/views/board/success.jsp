@@ -93,7 +93,7 @@
     <h2>MISSION <span style="color:var(--t1-red)">COMPLETE</span></h2>
     <p>${message}</p>
 
-    <a href="/board/isertForm" class="btn-list">New Board Insert</a>
+    <a href="/board/insertForm" class="btn-list">New Board Insert</a>
     <a href="/board/boardlist" class="btn-list">View Board List</a>
 
 </div>
