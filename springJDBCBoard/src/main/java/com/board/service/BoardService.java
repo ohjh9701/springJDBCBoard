@@ -16,4 +16,6 @@ public interface BoardService {
 	
 	public List<Board> boardList() throws Exception;
 	
+	public List<Board> boardSerch(Board board) throws Exception;
+	
 }

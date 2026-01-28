@@ -109,14 +109,90 @@
         color: #555;
         font-family: monospace;
     }
+    /* Search Bar Styles */
+    .search-container {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 20px;
+        gap: 10px;
+    }
+
+    .search-form {
+        display: flex;
+        background: var(--t1-gray);
+        border: 1px solid #333;
+        border-radius: 5px;
+        padding: 5px;
+        transition: 0.3s;
+    }
+
+    .search-form:focus-within {
+        border-color: var(--t1-red);
+        box-shadow: 0 0 10px rgba(226, 1, 45, 0.3);
+    }
+
+    .search-select {
+        background: transparent;
+        color: var(--t1-gold);
+        border: none;
+        outline: none;
+        padding: 5px 10px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .search-input {
+        background: transparent;
+        border: none;
+        border-left: 1px solid #333;
+        color: white;
+        padding: 8px 15px;
+        width: 200px;
+        outline: none;
+    }
+
+    .btn-search {
+        background: transparent;
+        border: none;
+        color: var(--t1-red);
+        font-weight: 800;
+        cursor: pointer;
+        padding: 0 15px;
+        transition: 0.3s;
+    }
+
+    .btn-search:hover {
+        color: white;
+        text-shadow: 0 0 5px var(--t1-red);
+    }
+    .btn-group {
+        display: flex;
+        gap: 10px; /* 버튼 사이의 간격 */
+    }
 </style>
 </head>
 <body>
-
-<div class="container">
+    
+    <div class="container">
     <div class="header-box">
-        <h1>BOARD <span>LIST</span></h1>
+    <h1>BOARD <span>LIST</span></h1>
+    
+    <div class="btn-group">
+        <a href="/board/boardlist" class="btn-write">List View</a>
         <a href="/board/insertForm" class="btn-write">New Mission</a>
+    </div>
+</div>
+
+    <div class="search-container">
+        <form action="/board/search" method="get" class="search-form">
+            <select name="searchType" class="search-select">
+                <option value="title">제목</option>
+                <option value="writer">작성자</option>
+                <option value="content">내용</option>
+            </select>
+            <input type="text" name="keyword" class="search-input" placeholder="Search mission...">
+            <button type="submit" class="btn-search">검색</button>
+        </form>
     </div>
 
     <table class="t1-table">
