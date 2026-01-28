@@ -66,5 +66,14 @@ public class BoardDAO {
 		
 		return board.isEmpty() ? null : board.get(0);
 	}
+
+	public int deleteBoard(Board board) {
+		
+		String query = "delete from jdbcboard where no = ?";
+		
+		int count = jdbcTemplate.update(query, board.getNo());
+		
+		return count;
+	}
 	
 }
